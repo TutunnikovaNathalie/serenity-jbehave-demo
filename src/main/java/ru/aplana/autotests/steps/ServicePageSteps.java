@@ -15,6 +15,7 @@ public class ServicePageSteps extends ScenarioSteps {
 
     @Step("заголовок страницы равен {0}")
     public void checkPageTitle(String expectedTitle){
+
         String actualTitle = servicePage.getTitleButton().getText();
         assertEquals(String.format("Заголовок равен [%s]. Ожидалось - [%s]",
                 actualTitle, expectedTitle), expectedTitle, actualTitle);

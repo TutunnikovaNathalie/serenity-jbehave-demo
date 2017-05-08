@@ -35,6 +35,7 @@ public class CheckOutPageSteps extends ScenarioSteps {
 
     @Step("текст ошибки равен {0}")
     public void checkError(String textError){
+
         boolean actual = checkOutPage.getTextError();
         assertTrue(String.format("Текст ошибки эл. адреса присутствует на странице: [%s]", textError),
                 actual);

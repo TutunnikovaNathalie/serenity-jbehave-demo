@@ -112,28 +112,103 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                    <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                    </systemProperties>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
+        <plugin>
+
+            <groupId>org.jbehave</groupId>
+
+            <artifactId>jbehave-maven-plugin</artifactId>
+
+            <version>${jbehave.core.version}</version>
+
+
+            <executions>
+
+
+            <execution>
+
+            <id>run-stories</id>
+
+            <phase>integration-test</phase>
+
+
+            <configuration>
+
+
+            <includes>
+
+            <include>**/StoriesRunner.java</include>
+
+        </includes>
+
+            <executorsClass>org.jbehave.core.embedder.executors.SameThreadExecutors</executorsClass>
+
+
+            <systemProperties>
+
+
+            <property>
+
+            <name>file.encoding</name>
+
+            <value>${project.build.sourceEncoding}</value>
+
+        </property>
+
+        </systemProperties>
+
+
+            <metaFilters>
+
+            <metaFilter>-skip</metaFilter>
+
+        </metaFilters>
+
+            <ignoreFailureInStories>true</ignoreFailureInStories>
+
+            <ignoreFailureInView>true</ignoreFailureInView>
+
+        </configuration>
+
+
+            <goals>
+
+            <goal>run-stories-as-embeddables</goal>
+
+        </goals>
+
+        </execution>
+
+        </executions>
+
+
+            <dependencies>
+
+
+            <dependency>
+
+            <groupId>com.google.guava</groupId>
+
+            <artifactId>guava</artifactId>
+
+            <version>20.0</version>
+
+        </dependency>
+
+
+            <dependency>
+
+            <groupId>log4j</groupId>
+
+            <artifactId>log4j</artifactId>
+
+            <version>1.2.17</version>
+
+        </dependency>
+
+        </dependencies>
+
+        </plugin>
 
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>

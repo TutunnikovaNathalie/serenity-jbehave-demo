@@ -18,6 +18,7 @@ public class MainPage extends PageObject{
      WebElementFacade productCollection;
 
     public void selectMenuItem(String itemName){
+
         menuItems.findElement(By.xpath(".//a[@data-toggle='dropdown']")).click();
     }
 

@@ -18,6 +18,7 @@ public class ServicePage extends PageObject {
      WebElement sendApplicationBtn;
 
     public WebElement getSendApplicationBtn() {
+
         return sendApplicationBtn;
     }
 

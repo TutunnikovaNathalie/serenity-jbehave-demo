@@ -13,6 +13,7 @@ public class MainPageSteps extends ScenarioSteps {
 
     @Step("выбран пункт меню {0}")
     public void selectMenuItem(String menuItem){
+
         mainPage.selectMenuItem(menuItem);
     }
 

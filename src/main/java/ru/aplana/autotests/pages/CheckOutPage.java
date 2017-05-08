@@ -112,6 +112,7 @@ public class CheckOutPage extends PageObject {
     }
 
     private String getFillField(WebElement element){
+
         return element.getAttribute("value");
     }
 

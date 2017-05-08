@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class StoriesRunner extends SerenityStories{
 
     public StoriesRunner(){
+
         runSerenity().inASingleSession();
     }
     @Override

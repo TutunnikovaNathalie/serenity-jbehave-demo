@@ -59,6 +59,7 @@ public class ScenarioSteps {
     @Then("значения полей равны: $fields")
     public void checkFillForm(ExamplesTable fields){
         for (Map<String, String> row : fields.getRows()) {
+
             String field = row.get("field");
             String value = row.get("value");
             checkOutPageSteps.checkFillField(field, value);
