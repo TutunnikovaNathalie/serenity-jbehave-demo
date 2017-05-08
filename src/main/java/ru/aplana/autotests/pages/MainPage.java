@@ -11,17 +11,17 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MainPage extends PageObject{
 
-    @FindBy(xpath = "//ul[@class='pNav btn redshdw']")
+    @FindBy(xpath = "//*[@id='main-navbar-collapse']")
      WebElement menuItems;
 
-    @FindBy(xpath = "//center[@class='first-center']")
+    @FindBy(xpath = "//div[@class='grid rgs-main-menu-links']")
      WebElementFacade productCollection;
 
     public void selectMenuItem(String itemName){
-        menuItems.findElement(By.xpath(".//a[@title='"+ itemName +"']")).click();
+        menuItems.findElement(By.xpath(".//a[@data-toggle='dropdown']")).click();
     }
 
     public void selectProduct(String productName){
-        menuItems.findElement(By.xpath("//*[text()='"+productName +"']")).click();
+        productCollection.findElement(By.xpath(".//a[contains(.,'"+ productName +"')]")).click();
     }
 }

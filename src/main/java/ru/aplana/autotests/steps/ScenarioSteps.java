@@ -16,10 +16,7 @@ public class ScenarioSteps {
     MainPageSteps mainPageSteps;
 
     @Steps
-    ProductPageSteps productPageSteps;
-
-    @Steps
-    BasketPageSteps basketPageSteps;
+    ServicePageSteps servicePageSteps;
 
     @Steps
     CheckOutPageSteps checkOutPageSteps;
@@ -29,45 +26,24 @@ public class ScenarioSteps {
         mainPageSteps.selectMenuItem(menuName);
     }
 
-    @When("выбран продукт с наименованием \"$productName\"")
-    public void selectProduct(String productName){
-        mainPageSteps.selectProductItem(productName);
+    @When("выбран продукт с наименованием \"$serviceName\"")
+    public void selectProduct(String serviceName){
+        mainPageSteps.selectProductItem(serviceName);
     }
 
-    @When("выполнен переход к старнице - корзина")
-    public void goToBasketPage(){
-        productPageSteps.goToBasketPage();
+    @Then("заголовок страницы - услуга равна \"$serviceTitle\"")
+    public void checkTitleServicePage(String serviceTitle){
+        servicePageSteps.checkPageTitle(serviceTitle);
     }
 
-    @Then("заголвок страницы - продукт равен \"$productName\"")
-    public void checkTitleProductPage(String productName){
-        productPageSteps.checkPageTitle(productName);
-    }
-
-    @When("сохранено значение итоговой суммы в переменную \"$variable\"")
-    public void saveTotalAmount(String variable){
-        productPageSteps.getAmount(variable);
-    }
-
-    @When("выполнено нажатие на кнопку - Добавить в корзину")
-    public void addToBasket(){
-        productPageSteps.addToBasket();
-    }
-
-    @Then("заголвок страницы - корзина равен \"$title\"")
-    public void checkTitleBasketPage(String title){
-        basketPageSteps.checkPageTitle(title);
-    }
-
-    @Then("итоговая сумма равна \"$variable\"")
-    public void checkTotalAmount(String variable){
-        variable = System.getProperty(variable);
-        basketPageSteps.checkAmount(variable);
-    }
-
-    @When("выполнен переход к старнице - оформление заказа")
+    @When("выполнено нажатие на кнопку - Отправить заявку")
     public void goToCheckOutPage(){
-        basketPageSteps.goToCheckOutPage();
+        servicePageSteps.goToCheckOutPage();
+    }
+
+    @Then("заголовок страницы платежа равен \"$title\"")
+    public void checkTitleCheckOutPage(String title){
+        checkOutPageSteps.checkPageTitle(title);
     }
 
     @When("заполняются поля: $fields")
@@ -89,5 +65,10 @@ public class ScenarioSteps {
         }
     }
 
+    @Then("у Поля - Эл. почта присутствует сообщение об ошибке - \"$textError\"")
+    public void checkError(String textError)
+    {
+        checkOutPageSteps.checkError(textError);
+    }
 
 }

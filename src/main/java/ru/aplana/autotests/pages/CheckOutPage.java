@@ -11,78 +11,74 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class CheckOutPage extends PageObject {
 
-    @FindBy(xpath = "//div[contains(@class,'mainForm')]//h2")
+    @FindBy(xpath = "//h4[@class='modal-title']/b")
      WebElement title;
 
-    @FindBy(id = "custumerName")
-     WebElement name;
+    @FindBy(name = "FirstName")
+     WebElement firstName;
 
-    @FindBy(id = "custumerPhone")
-     WebElement phone;
+    @FindBy(name = "MiddleName")
+     WebElement middleName;
 
-    @FindBy(id = "custumerStreet")
-     WebElement street;
+    @FindBy(name = "LastName")
+     WebElement lastName;
 
-    @FindBy(id = "custumerHome")
-     WebElement home;
+    @FindBy(name = "Region")
+     WebElement region;
 
-    @FindBy(name = "custumer[building]")
-     WebElement building;
+    @FindBy(xpath = "//label[contains(.,'Телефон')]/parent::div/input")
+    WebElement phone;
 
-    @FindBy(name = "custumer[structure]")
-     WebElement corpus;
+    @FindBy(name = "Email")
+     WebElement email;
 
-    @FindBy(id = "custumerPorch")
-     WebElement entrance;
+    @FindBy(name = "ContactDate")
+     WebElement contactDate;
 
-    @FindBy(id = "custumerFloor")
-     WebElement floor;
+    @FindBy(name = "Comment")
+     WebElement comment;
 
-    @FindBy(id = "custumerNumber")
-     WebElement apartment;
-
-    @FindBy(id = "custumerCode")
-     WebElement intercom;
+    @FindBy(xpath = "//span[contains(text(),'Введите корректный email')]")
+    WebElement textError;
 
     public CheckOutPage(WebDriver driver){
         PageFactory.initElements(driver, this);
     }
 
 
-
+    public WebElement getTitleButton() {
+        return title;
+    }
 
     public CheckOutPage fillField(String field, String value) {
         switch (field) {
             case "Имя":
-                fillField(name, value);
+                fillField(firstName, value);
+                break;
+            case "Фамилия":
+                fillField(lastName, value);
+                break;
+            case "Отчество":
+                fillField(middleName, value);
+                break;
+            case "Регион":
+                region.sendKeys(value);
+                //fillField(region, value);
                 break;
             case "Телефон":
                 fillField(phone, value);
                 break;
-            case "Улица":
-                fillField(street, value);
+            case "Эл. почта":
+                fillField(email, value);
                 break;
-            case "Дом":
-                fillField(home, value);
+            case "Дата контакта":
+                contactDate.sendKeys(value);
+               // fillField(contactDate, value);
                 break;
-            case "Корпус":
-                fillField(corpus, value);
+            case "Комментарии":
+                fillField(comment, value);
                 break;
-            case "Подъезд":
-                fillField(entrance, value);
-                break;
-            case "Строение":
-                fillField(building, value);
-                break;
-            case "Этаж":
-                fillField(floor, value);
-                break;
-            case "Квартира":
-                fillField(apartment, value);
-                break;
-            case "Домофон":
-                fillField(intercom, value);
-                break;
+
         }
         return this;
     }
@@ -90,25 +86,22 @@ public class CheckOutPage extends PageObject {
     public String getFillField(String field){
         switch (field) {
             case "Имя":
-                return getFillField(name);
+                return getFillField(firstName);
+            case "Фамилия":
+                return getFillField(lastName);
+            case "Отчество":
+                return getFillField(middleName);
+            case "Регион":
+                return getFillField(region);
             case "Телефон":
                 return getFillField(phone);
-            case "Улица":
-                return getFillField(street);
-            case "Дом":
-                return getFillField(home);
-            case "Корпус":
-                return getFillField(corpus);
-            case "Подъезд":
-                return getFillField(entrance);
-            case "Строение":
-                return getFillField(building);
-            case "Этаж":
-                return getFillField(floor);
-            case "Квартира":
-                return getFillField(apartment);
-            case "Домофон":
-                return getFillField(intercom);
+            case "Эл. почта":
+                return getFillField(email);
+            case "Дата контакта":
+                return getFillField(contactDate);
+            case "Комментарии":
+                return getFillField(comment);
+
         }
         throw new AssertionError("Поле " + field + "не объявлено на странице");
     }
@@ -122,4 +115,8 @@ public class CheckOutPage extends PageObject {
         return element.getAttribute("value");
     }
 
+    public boolean getTextError()
+    {
+        return textError.isEnabled();
+    }
 }
